@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('college_students', function (Blueprint $table) {
             $table->unsignedBigInteger('presence_id')->required()->after('id');
-            $table->foreign('presence_id')->references('id')->on('companies')->onDelete('restrict');
+            $table->foreign('presence_id')->references('id')->on('presences')->onDelete('restrict');
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('college_students', function (Blueprint $table) {
-            $table->foreign(['presence_id']);
+            $table->dropForeign(['presence_id']);
             $table->dropColumn('presence_id');
         });
     }
