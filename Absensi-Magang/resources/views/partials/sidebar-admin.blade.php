@@ -11,7 +11,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo">
-                <a href="/dashboard-plp"><span>Dashboard Absensi</span></a>
+                <a href="/admin"><span>Admin</span></a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <div class="form-check form-switch fs-6">
@@ -26,26 +26,17 @@
             <li class="sidebar-title">Menu</li>
             
             <li class="sidebar-item {{ ($title === "admin" ? 'active' : '') }}">
-                <a href="/home" class='sidebar-link'>
+                <a href="/admin" class='sidebar-link'>
                     <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li
-                class="sidebar-item  has-sub {{ ($title === "mahasiswa" ? 'active' : '') }}">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item {{ ($title === "user" || $title === "create" ? 'active' : '') }}">
+                <a href="/admin/user" class='sidebar-link'>
                     <i class="fa-solid fa-user"></i>
                     <span>User</span>
                 </a>
-                <ul class="submenu ">
-                    <li class="submenu-item {{ ($title === "mahasiswa" ? 'active' : '') }}">
-                        <a href="/admin/user/mahasiswa">Mahasiswa</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="/jadwal-berlangsung-plp">Pegawai</a>
-                    </li>
-                </ul>
             </li>
 
             <li
