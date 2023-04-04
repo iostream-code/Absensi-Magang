@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
+
+    public function Presences()
+    {
+        return $this->hasMany(Presence::class);
+    }
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Presence extends Model
 {
     use HasFactory;
+
+    public function Users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

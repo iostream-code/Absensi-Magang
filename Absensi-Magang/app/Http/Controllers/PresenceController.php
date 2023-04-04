@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 class PresenceController extends Controller
 {
-    //
+    //code here
 }
