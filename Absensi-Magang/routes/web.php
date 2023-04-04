@@ -13,6 +13,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//user
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::get('/home', function () {
+    return view('user.home', [
+        "title" => "home"
+    ]);
+});
+
+Route::get('/rekap', function () {
+    return view('user.rekap', [
+        "title" => "rekap"
+    ]);
+});
+
+Route::get('/settings', function () {
+    return view('user.settings', [
+        "title" => "settings"
+    ]);
+});
+
+//admin
+
+Route::get('/admin', function () {
+    return view('admin.admin', [
+        "title" => "admin"
+    ]);
+});
+
+Route::get('admin/user/mahasiswa', function () {
+    return view('admin.mahasiswa', [
+        "title" => "mahasiswa"
+    ]);
 });
