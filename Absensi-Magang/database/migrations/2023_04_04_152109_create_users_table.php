@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 20)->required();
+            $table->foreignId('presence_id');
+            $table->string('username', 20)->required();
+            $table->string('password', 20)->required();
+            $table->enum('status', ['WFH', 'WFO'])->required();
+            $table->enum('role', ['admin', 'students'])->required();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presences');
+        Schema::dropIfExists('users');
     }
 };

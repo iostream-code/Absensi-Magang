@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('college_students', function (Blueprint $table) {
+        Schema::create('presences', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20)->required();
-            $table->string('username', 20);
-            $table->string('password', 20)->required();
-            $table->string('status', 3)->required();
-            $table->string('ip_address', 50);
+            $table->string('ip_address', 50)->required();
+            $table->enum('status', ['WFH', 'WFO']);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('college_students');
+        Schema::dropIfExists('presences');
     }
 };
