@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('college_students', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20)->required();
+            $table->string('username', 20);
+            $table->string('password', 20)->required();
             $table->string('status', 3)->required();
             $table->string('ip_address', 50);
             $table->timestamps();
