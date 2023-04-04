@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20)->required();
-            $table->foreignId('presence_id');
             $table->string('username', 20)->required();
             $table->string('password', 20)->required();
             $table->enum('status', ['WFH', 'WFO'])->required();

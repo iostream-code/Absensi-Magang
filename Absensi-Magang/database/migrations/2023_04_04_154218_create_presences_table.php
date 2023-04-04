@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->required();
             $table->string('ip_address', 50)->required();
-            $table->enum('status', ['WFH', 'WFO']);
             $table->timestamps();
         });
     }
