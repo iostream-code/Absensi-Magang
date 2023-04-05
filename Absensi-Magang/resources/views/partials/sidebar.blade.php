@@ -11,7 +11,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo">
-                <a href="/dashboard-plp"><span>Dashboard Absensi</span></a>
+                <a href="/home"><span>User</span></a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <div class="form-check form-switch fs-6">
