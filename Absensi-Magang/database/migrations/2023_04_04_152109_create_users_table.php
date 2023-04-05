@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name', 20)->required();
             $table->string('username', 20)->required();
             $table->string('password', 20)->required();
-            $table->enum('status', ['WFH', 'WFO'])->required();
             $table->enum('role', ['admin', 'students'])->required();
             $table->timestamps();
         });

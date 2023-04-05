@@ -32,7 +32,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ ($title === "user" || $title === "create" ? 'active' : '') }}">
+            <li class="sidebar-item {{ ($title === "user" || $title === "create" || $title === "edit" ? 'active' : '') }}">
                 <a href="/admin/user" class='sidebar-link'>
                     <i class="fa-solid fa-user"></i>
                     <span>User</span>

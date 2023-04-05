@@ -22,8 +22,8 @@
                                             <th>Nama</th>
                                             <th>username</th>
                                             <th>Password</th>
-                                            <th>Status</th>
                                             <th>Role</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,8 +36,11 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->username }}</td>
                                                 <td>{{ $item->password }}</td>
-                                                <td>{{ $item->status }}</td>
                                                 <td>{{ $item->role }}</td>
+                                                <td>
+                                                    <a href="/admin/user/edit/{{ $item->id }}" class="btn btn-warning">Edit</a>
+                                                    <a href="/admin/user/delete/{{ $item->id }}" class="btn btn-danger">Delete</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
