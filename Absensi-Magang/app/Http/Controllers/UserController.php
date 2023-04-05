@@ -29,4 +29,28 @@ class UserController extends Controller
 
         return redirect('/admin/user');
     }
+
+    public function edit($id)
+    {
+        $data = User::find($id);
+        $title = 'edit';
+
+        return view('admin.edit', compact('data', 'title'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = User::find($id);
+        $data->update($request->all());
+
+        return redirect('/admin/user');
+    }
+
+    public function delete($id)
+    {
+        $data = User::find($id);
+        $data->delete();
+
+        return redirect('/admin/user');
+    }
 }

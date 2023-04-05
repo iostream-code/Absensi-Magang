@@ -11,7 +11,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tambah User</li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit User</li>
                         </ol>
                     </nav>
                 </div>
@@ -24,36 +24,36 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Masukkan Data</h4>
+                        <h4 class="card-title">Edit Data</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form" action="/insert" method="POST">
+                            <form class="form" action="/update/{{ $data->id }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label">Nama</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama">
+                                        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama" value="{{ $data->name }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">username</label>
-                                        <input type="text" name="username" class="form-control" placeholder="Masukkan username">
+                                        <input type="text" name="username" class="form-control" placeholder="Masukkan username" value="{{ $data->username }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="text" name="password" class="form-control" placeholder="Masukkan Password">
+                                        <input type="text" name="password" class="form-control" placeholder="Masukkan Password" value="{{ $data->password }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Role</label>
                                         <select class="form-select" aria-label="Default select example" name="role">
-                                            <option selected>Admin atau Student</option>
+                                            <option selected>{{ $data->role }}</option>
                                             <option value="admin">admin</option>
                                             <option value="students">students</option>
                                         </select>
                                     </div>
 
                                     <div class="col-12 d-flex justify-content-end pt-5">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>
                                     </div>
                                 </div>
                             </form>
