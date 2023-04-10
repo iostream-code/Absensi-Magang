@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\UserController;
+<<<<<<< HEAD
 use App\Http\Controllers\loginController;
+=======
+use App\Http\Controllers\LoginController;
+>>>>>>> 38160db (Adding login controller)
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,17 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//user
+//USER
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/home', function () {
-    return view('user.home', [
-        "title" => "home"
-    ]);
-});
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+// Route::get('/home', function () {
+//     return view('user.home', [
+//         "title" => "home"
+//     ]);
+// });
 
 Route::get('/rekap', function () {
     return view('user.rekap', [
@@ -39,11 +49,15 @@ Route::get('/settings', function () {
     ]);
 });
 
+<<<<<<< HEAD
 Route::get('/presence', function () {
     return view('user.presence');
 });
 
 //admin
+=======
+//ADMIN
+>>>>>>> 38160db (Adding login controller)
 
 Route::get('/admin', function () {
     return view('admin.admin', [
