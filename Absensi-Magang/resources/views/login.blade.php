@@ -33,6 +33,7 @@
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <form action="{{ route('postlogin') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -43,6 +44,12 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" name="username" class="form-control form-control-xl" placeholder="Username">
 >>>>>>> 38160db (Adding login controller)
+=======
+                    <form action="{{ route('actionlogin') }}" method="POST">
+                        @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="email" name="email" class="form-control form-control-xl" placeholder="Mail">
+>>>>>>> 3749f46 (Adding logic for login user)
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
