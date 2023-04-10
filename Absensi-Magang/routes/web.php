@@ -24,14 +24,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
-Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
-
-// Route::get('/home', function () {
-//     return view('user.home', [
-//         "title" => "home"
-//     ]);
-// });
+Route::get('/home', function () {
+    return view('user.home', [
+        "title" => "home"
+    ]);
+})->middleware('auth');
 
 Route::get('/rekap', function () {
     return view('user.rekap', [

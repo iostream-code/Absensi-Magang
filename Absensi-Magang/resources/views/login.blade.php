@@ -32,10 +32,10 @@
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
-                    <form action="{{ route('actionlogin') }}" method="post">
+                    <form action="{{ route('actionlogin') }}" method="POST">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" name="username" class="form-control form-control-xl" placeholder="Username">
+                            <input type="email" name="email" class="form-control form-control-xl" placeholder="Mail">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
