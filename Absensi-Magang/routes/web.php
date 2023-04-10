@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//user
+//USER
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/home', function () {
-    return view('user.home', [
-        "title" => "home"
-    ]);
-});
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+// Route::get('/home', function () {
+//     return view('user.home', [
+//         "title" => "home"
+//     ]);
+// });
 
 Route::get('/rekap', function () {
     return view('user.rekap', [
@@ -38,7 +45,7 @@ Route::get('/settings', function () {
     ]);
 });
 
-//admin
+//ADMIN
 
 Route::get('/admin', function () {
     return view('admin.admin', [
