@@ -23,7 +23,7 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        dd($request);
+        // dd($request);
 
         if (Auth::Attempt($data)) {
             return redirect('home');
@@ -31,26 +31,6 @@ class LoginController extends Controller
             return redirect('/');
         }
     }
-
-    // public function actionlogin(Request $request)
-    // {
-    //     $request->validate(
-    //         [
-    //             'username' => 'required',
-    //             'password' => 'required'
-    //         ],
-    //         [
-    //             'username.required' => 'Username salah',
-    //             'password.required' => 'Password salah'
-    //         ]
-    //     );
-
-    //     $data = [
-    //         'username' => $request->username,
-    //         'password' => $request->password,
-    //     ];
-
-    // }
 
     public function actionlogout()
     {
