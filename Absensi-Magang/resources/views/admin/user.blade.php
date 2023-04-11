@@ -20,8 +20,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>username</th>
-                                            <th>Password</th>
+                                            <th>Email</th>
                                             <th>Role</th>
                                             <th>Action</th>
                                         </tr>
@@ -34,8 +33,7 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->username }}</td>
-                                                <td>{{ $item->password }}</td>
+                                                <td>{{ $item->email }}</td>
                                                 <td>{{ $item->role }}</td>
                                                 <td>
                                                     <a href="/admin/user/edit/{{ $item->id }}" class="btn btn-warning">Edit</a>
