@@ -38,6 +38,10 @@ Route::get('/settings', function () {
     ]);
 });
 
+Route::get('/presence', function () {
+    return view('user.presence');
+});
+
 //admin
 
 Route::get('/admin', function () {

@@ -53,7 +53,7 @@
                         </div>
                     </form>
             
-                    <button class="btn btn-primary btn-lg shadow-lg mt-5" onclick="location.href='{{ url('/home') }}'">User</button>
+                    <button class="btn btn-primary btn-lg shadow-lg mt-5" onclick="location.href='{{ url('/presence') }}'">User</button>
                     <button class="btn btn-primary btn-lg shadow-lg mt-5" onclick="location.href='{{ url('/admin') }}'">Admin</button>
                 </div>
             </div>
