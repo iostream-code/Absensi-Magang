@@ -36,12 +36,12 @@
                                         <input type="text" name="name" class="form-control" placeholder="Masukkan Nama">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">username</label>
-                                        <input type="text" name="username" class="form-control" placeholder="Masukkan username">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="text" name="password" class="form-control" placeholder="Masukkan Password">
+                                        <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Role</label>
