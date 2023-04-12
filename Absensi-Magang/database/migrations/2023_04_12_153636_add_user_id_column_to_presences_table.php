@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -14,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('presences', function (Blueprint $table) {
-            $table->id();
-            // $table->foreignIdFor(User::class);
-            $table->enum('status', ['WFH', 'WFO'])->required();
-            $table->string('ip_address', 255)->required();
-            $table->timestamps();
+        Schema::table('presences', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->required()->after('id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
         });
     }
 
@@ -30,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presences');
+        Schema::table('presences', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
     }
 };
