@@ -38,7 +38,7 @@
                 @endif
 
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input name="name" type="text" class="form-control form-control-xl" placeholder="Name">
+                    <input name="username" type="text" class="form-control form-control-xl" placeholder="Name">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>
