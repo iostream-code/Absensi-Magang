@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\UserController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\loginController;
 =======
 use App\Http\Controllers\LoginController;
 >>>>>>> 38160db (Adding login controller)
+=======
+use App\Http\Controllers\LoginController;
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +47,7 @@ Route::get('/settings', function () {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('/presence', function () {
     return view('user.presence');
 });
@@ -51,6 +56,9 @@ Route::get('/presence', function () {
 =======
 //ADMIN
 >>>>>>> 38160db (Adding login controller)
+=======
+//ADMIN
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
 
 Route::get('/admin', function () {
     return view('admin.admin', [

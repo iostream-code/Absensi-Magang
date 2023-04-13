@@ -4,10 +4,16 @@ namespace App\Models;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Foundation\Auth\User as Authenticatable;
+=======
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
+<<<<<<< HEAD
 =======
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,6 +28,8 @@ use Illuminate\Notifications\Notifiable;
 =======
 
 >>>>>>> 4336d30 (Modify login controller n user model)
+=======
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
 class User extends Authenticatable
 {
     // protected $guarded = ['id'];

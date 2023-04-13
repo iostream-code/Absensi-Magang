@@ -34,6 +34,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <form action="{{ route('postlogin') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -50,6 +51,12 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" name="email" class="form-control form-control-xl" placeholder="Mail">
 >>>>>>> 3749f46 (Adding logic for login user)
+=======
+                    <form action="{{ route('actionlogin') }}" method="POST">
+                        @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="email" name="email" class="form-control form-control-xl" placeholder="Mail">
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
@@ -61,6 +68,7 @@
                             </div>
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label text-gray-600" for="flexCheckDefault">
@@ -71,6 +79,9 @@
 =======
                         <button class="btn btn-primary btn-lg shadow-lg mt-3" type="submit">Submit</button>
 >>>>>>> 38160db (Adding login controller)
+=======
+                        <button class="btn btn-primary btn-lg shadow-lg mt-3" type="submit">Submit</button>
+>>>>>>> 4336d30d1dbac9d84ec7f121ce9b8619b8e8b334
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">Don't have an account? <a href="{{url('/register')}}" class="font-bold">Sign
