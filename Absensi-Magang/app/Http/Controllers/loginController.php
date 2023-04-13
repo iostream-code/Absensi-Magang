@@ -38,7 +38,7 @@ class loginController extends Controller
         //dd($request->all());
         $data = ['email'=>$request->input('email'),'password'=>$request->input('password')];
         if (Auth::attempt($data)){
-            if (Auth::attempt($data)){
+            if (Auth::attempt($data = $request->only('role'=='admin'))){
                 return redirect('admin');
             }
             return redirect('home');
