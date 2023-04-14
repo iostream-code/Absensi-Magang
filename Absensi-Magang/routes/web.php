@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\PresenceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,3 +64,6 @@ Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin
 Route::get('register', [loginController::class, 'register']);
 Route::post('/register->user', [loginController::class, 'create'])->name('create_user');
 
+//presences
+Route::get('/presensi',[PresenceController::class, 'presences']);
+Route::post('/getip', [PresenceController::class, 'getip'])->name('getip');

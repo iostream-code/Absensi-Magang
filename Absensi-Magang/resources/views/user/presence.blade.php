@@ -24,8 +24,11 @@
                     </div>
                 </div>
                 <div class="button-presence d-flex align-items-center gap-2">
-                    <button class="btn btn-success btn-lg">WFH</button>
-                    <button class="btn btn-primary btn-lg">WFO</button>
+                    <form action="/getip" method="POST">
+                        @csrf
+                        <button class="btn btn-success btn-lg" type="submit">absen</button>
+                        {{-- <button class="btn btn-primary btn-lg" type="submit">WFO</button> --}}
+                    </form>
                 </div>
             </div>
             <div class="card-content">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -41,7 +41,7 @@ class loginController extends Controller
             if (Auth::attempt($data = $request->only('role'=='admin'))){
                 return redirect('admin');
             }
-            return redirect('home');
+            return redirect('presence');
         }
         return redirect('login');
     }
