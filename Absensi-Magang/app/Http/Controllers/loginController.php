@@ -11,17 +11,20 @@ use \Illuminate\Foundation\Auth\AuthenticatesUsers;
 class loginController extends Controller
 {
     //
-    public function login(){
+    public function login()
+    {
         //dd('login page');
         return view('login');
     }
-    public function register(){
+    public function register()
+    {
         //dd('login page');
         return view('register');
     }
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         //dd($request->all());
-        
+
         $user = new User();
         /*if($request->cofirm != $request->password){
             return redirect('register')->with('error','Both password are not matched!');
@@ -32,17 +35,25 @@ class loginController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect('register')->with('success','Registered Successfully');
+        return redirect('register')->with('success', 'Registered Successfully');
     }
-    public function postlogin(Request $request){
+    public function postlogin(Request $request)
+    {
         //dd($request->all());
-        $data = ['email'=>$request->input('email'),'password'=>$request->input('password')];
-        if (Auth::attempt($data)){
-            if (Auth::attempt($data = $request->only('role'=='admin'))){
+        // $id = User::find($id);
+        
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+        
+        if (Auth::attempt($data)) {
+            if (Auth::attempt($data = $request->only('role' == 'admin'))) {
                 return redirect('admin');
             }
             return redirect('presence');
         }
+
         return redirect('login');
     }
 }

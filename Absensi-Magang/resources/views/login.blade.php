@@ -32,7 +32,7 @@
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
-                    <form action="{{ route('postlogin') }}" method="POST">
+                    <form action="postlogin" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" name="email" class="form-control form-control-xl" placeholder="email">

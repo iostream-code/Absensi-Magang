@@ -65,5 +65,5 @@ Route::get('register', [loginController::class, 'register']);
 Route::post('/register->user', [loginController::class, 'create'])->name('create_user');
 
 //presences
-Route::get('/presensi',[PresenceController::class, 'presences']);
-Route::post('/getip', [PresenceController::class, 'getip'])->name('getip');
+Route::get('/presence',[PresenceController::class, 'presences']);
+Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');

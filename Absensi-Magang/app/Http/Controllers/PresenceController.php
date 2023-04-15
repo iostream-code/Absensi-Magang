@@ -5,23 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Presence;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PresenceController extends Controller
 {
     public function presences()
     {
-        return view('user.presence');
+        $data = User::all();
+        return view('user.presence', compact('data'));
     }
 
-    public function getip()
+    public function getpresence(Request $req)
     {
-        $ip = request()->ip();
-        $data = Presence::create([
-            'user_id' => Presence::with('users')->all()->user_id,
-            "ip_address" => $ip
-        ]);
-        $title = "home";
-        return dd($data);
-        // return view('user.home', compact('data', 'title'));
+        $presence = new Presence();
+
+        $presence->user_id = Auth::user()->id;
+        $presence->status = $req->status;
+        $presence->ip_address = request()->ip();
+        $presence->save();
+
+        return redirect('home');
     }
 }
