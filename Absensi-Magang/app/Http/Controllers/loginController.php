@@ -32,13 +32,13 @@ class loginController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect('register')->with('success','Registered Successfully');
+        return redirect('login');
     }
     public function postlogin(Request $request){
         //dd($request->all());
         $data = ['email'=>$request->input('email'),'password'=>$request->input('password')];
         if (Auth::attempt($data)){
-            if (Auth::attempt($data = $request->only('role'=='admin'))){
+            if (Auth::attempt($data)){
                 return redirect('admin');
             }
             return redirect('home');
