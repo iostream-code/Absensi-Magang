@@ -64,6 +64,6 @@ Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin
 Route::get('register', [loginController::class, 'register']);
 Route::post('/register->user', [loginController::class, 'create'])->name('create_user');
 
-//presences
-Route::get('/presence',[PresenceController::class, 'presences']);
-Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');
+Route::get('admin', function() {return view('admin'); })->middleware('checkRole:admin');
+Route::get('students', function() {return view('home'); })->middleware('checkRole:students');
+
