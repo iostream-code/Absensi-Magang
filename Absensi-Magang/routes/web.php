@@ -28,11 +28,7 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::get('/rekap', function () {
-    return view('user.rekap', [
-        "title" => "rekap"
-    ]);
-});
+Route::get('/rekap', [PresenceController::class, 'index']);
 
 Route::get('/settings', function () {
     return view('user.settings', [

@@ -19,19 +19,21 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Tanggal</th>
-                                            <th>Check in</th>
-                                            <th>Check Out</th>
+                                            <th>Jam</th>
                                             <th>Status</th>
+                                            <th>IP Address</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($presence as $item)
                                         <tr>
-                                            <td>Ghifari</td>
-                                            <td>21-11-2023</td>
-                                            <td>08:00</td>
-                                            <td>17:00</td>
-                                            <td>Berhasil</td>
-                                        </tr>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->created_at->format('d M Y') }}</td>
+                                            <td>{{ $item->created_at->format('H:i') }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td>{{ $item->ip_address }}</td>
+                                        </tr>    
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
