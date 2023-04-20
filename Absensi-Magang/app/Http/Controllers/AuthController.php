@@ -8,27 +8,22 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use \Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class loginController extends Controller
+class AuthController extends Controller
 {
-    //
     public function login()
     {
-        //dd('login page');
         return view('login');
     }
+
     public function register()
     {
-        //dd('login page');
         return view('register');
     }
+
     public function create(Request $request)
     {
-        //dd($request->all());
-
         $user = new User();
-        /*if($request->cofirm != $request->password){
-            return redirect('register')->with('error','Both password are not matched!');
-        }*/
+        
         $user->name = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
@@ -37,17 +32,21 @@ class loginController extends Controller
 
         return redirect('login');
     }
-    public function postlogin(Request $request)
+
+    public function postlogin(Request $req)
     {
-        //dd($request->all());
-        $data = ['email'=>$request->input('email'),'password'=>$request->input('password')];
-        if (Auth::attempt($data)){
-            if (Auth::attempt($data)){
+        $input = [
+            'email' => $req->input('email'),
+            'password' => $req->input('password')
+        ];
+
+        if (Auth::attempt($input)) {
+            if (Auth::user()->role == 'admin') {
                 return redirect('admin');
             }
             return redirect('presence');
         }
 
-        return redirect('login');
+        return redirect('/');
     }
 }
