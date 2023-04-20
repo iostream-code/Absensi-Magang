@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="button-presence d-flex align-items-center gap-2">
-                    <form action="{{ /getpresence }}" method="POST">
+                    <form action="/getpresence" method="POST">
                         @csrf
                         <select name="status" class="form-select" aria-label="Default select example">
                             <option selected>Status</option>
