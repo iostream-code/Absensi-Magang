@@ -56,8 +56,6 @@ Route::post('/update/{id}', [UserController::class, 'update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
 Route::get('/riwayat', [PresenceController::class, 'getHistory']);
 
-
-
 Route::get('login', [loginController::class, 'login']);
 Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin');
 Route::get('register', [loginController::class, 'register']);
