@@ -26,16 +26,16 @@
             <li class="sidebar-title">Menu</li>
             
             <li class="sidebar-item {{ ($title === "home" ? 'active' : '') }}">
-                <a href="/home" class='sidebar-link'>
+                <a href="{{ route('home') }}" class='sidebar-link'>
                     <i class="fa-solid fa-house"></i>
                     <span>Home</span>
                 </a>
             </li>
 
-            <li class="sidebar-item {{ ($title === "rekap" ? 'active' : '') }}">
-                <a href="/rekap" class='sidebar-link'>
+            <li class="sidebar-item {{ ($title === "recap" ? 'active' : '') }}">
+                <a href="{{ route('recap_presence') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
-                    <span>Rekap</span>
+                    <span>My Presence</span>
                 </a>
             </li>
 

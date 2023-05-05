@@ -33,11 +33,13 @@ Route::post('/presence', [PresenceController::class, 'addPresence'])->name('add_
 
 // User Route
 
-Route::get('/home', function() {
+Route::get('/user', function() {
     return view('user.home', [
         "title" => "home"
     ]);
 })->name('home');
+
+Route::get('/user/recap', [PresenceController::class, 'recapPresence'])->name('recap_presence');
 
 // Admin Route
         

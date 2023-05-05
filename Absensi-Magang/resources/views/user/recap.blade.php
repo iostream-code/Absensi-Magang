@@ -25,13 +25,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($presence as $item)
+                                            @foreach ($presence as $presence)
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
-                                                    <td>{{ $item->created_at->format('d M Y') }}</td>
-                                                    <td>{{ $item->created_at->format('H:i') }}</td>
-                                                    <td>{{ $item->status }}</td>
-                                                    <td>{{ $item->ip_address }}</td>
+                                                    <td>{{ $presence->created_at->format('d M Y') }}</td>
+                                                    <td>{{ $presence->created_at->format('H:i') }}</td>
+                                                    <td>{{ $presence->status }}</td>
+                                                    <td>{{ $presence->ip_address }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

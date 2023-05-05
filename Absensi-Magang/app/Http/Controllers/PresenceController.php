@@ -30,15 +30,15 @@ class PresenceController extends Controller
         return Redirect::route('home');
     }
 
-    // public function presence()
-    // {
-    //     $user = Auth::user();
-    //     $presence = Presence::where('user_id', $user->id)->get();
+    public function recapPresence()
+    {
+        $title = "recap";
 
-    //     $title = "rekap";
+        $user = Auth::user();
+        $presence = Presence::where('user_id', $user->id)->get();
 
-    //     return view('user.rekap', compact('user', 'presence', 'title'));
-    // }
+        return view('user.recap', compact('title', 'user', 'presence'));
+    }
 
     // public function showPresences()
     // {
@@ -56,17 +56,5 @@ class PresenceController extends Controller
     //     $presence->save();
 
     //     return redirect('home');
-    // }
-
-    // public function getHistory()
-    // {
-    //     $user = User::all();
-    //     $presence = Presence::join('users', 'presences.user_id', '=', 'users.id')
-    //         ->select('users.name', 'users.email', 'users.role', 'presences.status', 'presences.ip_address', 'presences.created_at')
-    //         ->get();
-
-    //     $title = "riwayat";
-
-    //     return view('admin.riwayat', compact('user', 'presence', 'title'));
     // }
 }
