@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PresenceController;
@@ -25,13 +25,22 @@ Route::post('/login', [AuthController::class, 'actionLogin'])->name('action_logi
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'createUser'])->name('create_user');
 
-//Presences Route
+// Presences Route
 
-Route::get('/presence', [PresenceController::class, 'presences'])->name('presence');
-Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');
+Route::get('/presence', [PresenceController::class, 'presence'])->name('presence');
+Route::post('/presence', [PresenceController::class, 'addPresence'])->name('add_presence');
 
-//Admin Route
 
+// User Route
+
+Route::get('/home', function() {
+    return view('user.home', [
+        "title" => "home"
+    ]);
+})->name('home');
+
+// Admin Route
+        
 Route::get('/admin', function () {
     return view('admin.admin', [
         "title" => "admin"
