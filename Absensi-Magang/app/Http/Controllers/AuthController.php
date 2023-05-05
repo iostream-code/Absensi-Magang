@@ -38,7 +38,8 @@ class AuthController extends Controller
                 return Redirect::route('admin');
             else
                 return Redirect::route('presence');
-        }
+        } else
+            return Redirect::back();
     }
 
     public function register()

@@ -17,7 +17,7 @@ use App\Http\Controllers\PresenceController;
 |
 */
 
-// Auth Route
+// Authentication User Route
 
 Route::get('/', [AuthController::class, 'auth'])->name('auth');
 Route::post('/login', [AuthController::class], 'authUser')->name('auth_user');
@@ -30,13 +30,13 @@ Route::post('/register', [AuthController::class, 'createUser'])->name('create_us
 Route::get('/presence', [PresenceController::class, 'presences'])->name('presence');
 Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');
 
-//admin
+//Admin Route
 
 Route::get('/admin', function () {
     return view('admin.admin', [
         "title" => "admin"
     ]);
-})->name('admin');
+})->middleware('auth')->name('admin');
 
 Route::get('admin/user', [UserController::class, 'index']);
 Route::get('admin/user/create', [UserController::class, 'create']);
