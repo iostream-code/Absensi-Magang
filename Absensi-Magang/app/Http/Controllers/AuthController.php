@@ -11,12 +11,12 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function auth()
+    public function login()
     {
         return view('login');
     }
 
-    public function authUser(Request $req)
+    public function actionLogin(Request $req)
     {
         $data = [
             'email' => $req->email,
@@ -24,14 +24,15 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($data)) {
-            $role = Auth::user()->role;
+            $user = Auth::user();
+            $role = $user->role;
 
             if (Auth::attempt($role == 'admin'))
                 return Redirect::route('admin');
             else
                 return Redirect::route('presence');
         } else
-            return Redirect::route('auth');
+            return Redirect::route('login');
     }
 
     public function register()
@@ -49,6 +50,6 @@ class AuthController extends Controller
         $user->role = $req->role;
         $user->save();
 
-        return Redirect::route('auth');
+        return Redirect::route('login');
     }
 }

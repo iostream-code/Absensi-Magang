@@ -30,7 +30,7 @@
                         <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
-                    <form action="{{ route('auth_user') }}" method="post">
+                    <form action="{{ route('action_login') }}" method="post">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" name="email" class="form-control form-control-xl"
