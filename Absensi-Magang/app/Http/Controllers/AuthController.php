@@ -13,15 +13,7 @@ class AuthController extends Controller
 {
     public function auth()
     {
-        if (Auth::check()) {
-            $role = Auth::user()->role;
-
-            if ($role == 'admin')
-                return Redirect::route('admin');
-            else
-                return Redirect::route('presence');
-        } else
-            return view('login');
+        return view('login');
     }
 
     public function authUser(Request $req)
@@ -39,7 +31,7 @@ class AuthController extends Controller
             else
                 return Redirect::route('presence');
         } else
-            return Redirect::back();
+            return Redirect::route('login');
     }
 
     public function register()
@@ -57,6 +49,6 @@ class AuthController extends Controller
         $user->role = $req->role;
         $user->save();
 
-        return Redirect::route('auth');
+        return Redirect::route('login');
     }
 }

@@ -19,7 +19,8 @@ use App\Http\Controllers\PresenceController;
 
 // Authentication User Route
 
-Route::get('/', [AuthController::class, 'auth'])->name('auth');
+// Route::get('/login', array('uses' => 'AuthController@auth'))->name('login');
+Route::get('/', [AuthController::class], 'auth')->name('login');
 Route::post('/login', [AuthController::class], 'authUser')->name('auth_user');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');

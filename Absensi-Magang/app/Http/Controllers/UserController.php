@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     public function index()
     {
         $data = User::all();
