@@ -31,7 +31,7 @@ class AuthController extends Controller
             else
                 return Redirect::route('presence');
         } else
-            return Redirect::route('login');
+            return Redirect::route('auth');
     }
 
     public function register()
@@ -49,6 +49,6 @@ class AuthController extends Controller
         $user->role = $req->role;
         $user->save();
 
-        return Redirect::route('login');
+        return Redirect::route('auth');
     }
 }
