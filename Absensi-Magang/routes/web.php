@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\loginController;
-use App\Http\Controllers\PresenceController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PresenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,29 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//user
+// Auth Route
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', [AuthController::class, 'auth'])->name('auth');
+Route::post('/login', [AuthController::class], 'authUser')->name('auth_user');
 
-Route::get('/home', function () {
-    return view('user.home', [
-        "title" => "home"
-    ]);
-});
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'createUser'])->name('create_user');
 
-Route::get('/rekap', [PresenceController::class, 'index']);
+//Presences Route
 
-Route::get('/settings', function () {
-    return view('user.settings', [
-        "title" => "settings"
-    ]);
-});
-
-Route::get('/presence', function () {
-    return view('user.presence');
-});
+Route::get('/presence', [PresenceController::class, 'presences'])->name('presence');
+Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');
 
 //admin
 
@@ -46,7 +36,7 @@ Route::get('/admin', function () {
     return view('admin.admin', [
         "title" => "admin"
     ]);
-});
+})->name('admin');
 
 Route::get('admin/user', [UserController::class, 'index']);
 Route::get('admin/user/create', [UserController::class, 'create']);
@@ -55,12 +45,3 @@ Route::get('admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/update/{id}', [UserController::class, 'update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
 Route::get('/riwayat', [PresenceController::class, 'getHistory']);
-
-Route::get('login', [loginController::class, 'login']);
-Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin');
-Route::get('register', [loginController::class, 'register']);
-Route::post('/register->user', [loginController::class, 'create'])->name('create_user');
-
-//presences
-Route::get('/presence',[PresenceController::class, 'presences']);
-Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('getpresence');
