@@ -27,7 +27,7 @@
                                     <tbody>
                                         @foreach ($presence as $item)
                                         <tr>
-                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $user->name }}</td>
                                             <td>{{ $item->created_at->format('d M Y') }}</td>
                                             <td>{{ $item->created_at->format('H:i') }}</td>
                                             <td>{{ $item->status }}</td>
