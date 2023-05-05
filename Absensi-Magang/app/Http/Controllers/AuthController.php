@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Models\User;
@@ -24,13 +24,10 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($data)) {
-            $user = Auth::user();
-            $role = $user->role;
-
-            if (Auth::attempt($role == 'admin'))
-                return Redirect::route('admin');
-            else
+            if (Auth::user()->role == 'student')
                 return Redirect::route('presence');
+            else
+                return Redirect::route('admin');
         } else
             return Redirect::route('login');
     }

@@ -32,11 +32,11 @@ Route::post('/getpresence', [PresenceController::class, 'getpresence'])->name('g
 
 //Admin Route
 
-// Route::get('/admin', function () {
-//     return view('admin.admin', [
-//         "title" => "admin"
-//     ]);
-// })->middleware('auth')->name('admin');
+Route::get('/admin', function () {
+    return view('admin.admin', [
+        "title" => "admin"
+    ]);
+})->name('admin');
 
 Route::get('admin/user', [UserController::class, 'index']);
 Route::get('admin/user/create', [UserController::class, 'create']);
