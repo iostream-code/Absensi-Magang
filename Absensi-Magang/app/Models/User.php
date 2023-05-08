@@ -10,8 +10,6 @@ class User extends Authenticatable
 {
     use HasFactory;
 
-    // protected $guarded = ['id'];
-
     public function Presences()
     {
         return $this->hasMany(Presence::class, 'user_id');

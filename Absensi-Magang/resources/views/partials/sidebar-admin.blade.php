@@ -39,10 +39,10 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ ($title === "riwayat" ? 'active' : '') }}">
-                <a href="/riwayat" class='sidebar-link'>
+            <li class="sidebar-item {{ ($title === "presences" ? 'active' : '') }}">
+                <a href="{{ route('show_presences') }}" class='sidebar-link'>
                     <i class="fa-solid fa-book"></i>
-                    <span>Riwayat</span>
+                    <span>Presences</span>
                 </a>
             </li>
 

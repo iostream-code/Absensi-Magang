@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <select class="form-select" aria-label="Default select example" name="role">
+                            <select class="form-select" aria-label="Default select example" name="role" required>
                                 <option selected>Role</option>
                                 <option value="admin">Admin</option>
                                 <option value="student">Student</option>

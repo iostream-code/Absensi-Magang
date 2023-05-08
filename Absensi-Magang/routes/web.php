@@ -49,10 +49,11 @@ Route::get('/admin', function () {
     ]);
 })->name('admin');
 
+Route::get('/admin/presences', [PresenceController::class, 'showPresences'])->name('show_presences');
+
 Route::get('admin/user', [UserController::class, 'index']);
 Route::get('admin/user/create', [UserController::class, 'create']);
 Route::post('/insert', [UserController::class, 'insert']);
 Route::get('admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/update/{id}', [UserController::class, 'update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
-Route::get('/riwayat', [PresenceController::class, 'getHistory']);

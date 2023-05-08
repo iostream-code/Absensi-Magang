@@ -40,21 +40,13 @@ class PresenceController extends Controller
         return view('user.recap', compact('title', 'user', 'presence'));
     }
 
-    // public function showPresences()
-    // {
-    //     $data = User::all();
-    //     return view('user.presence', compact('data'));
-    // }
+    public function showPresences()
+    {
+        $title = "presences";
 
-    // public function getpresence(Request $req)
-    // {
-    //     $presence = new Presence();
+        $presence = Presence::all();
+        $user = User::all();
 
-    //     $presence->user_id = Auth::user()->id;
-    //     $presence->status = $req->status;
-    //     $presence->ip_address = request()->getClientIp(true);
-    //     $presence->save();
-
-    //     return redirect('home');
-    // }
+        return view('admin.presences', compact('title', 'presence', 'user'));
+    }
 }
