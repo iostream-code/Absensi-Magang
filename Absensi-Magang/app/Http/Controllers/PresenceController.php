@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use DateTimeZone;
 
 use App\Models\User;
 use App\Models\Presence;
+use DateTime;
 
 class PresenceController extends Controller
 {
@@ -20,12 +22,27 @@ class PresenceController extends Controller
 
     public function addPresence(Request $req)
     {
-        $presence = new Presence();
+        $timezone = 'Asia/Jakarta';
+        $date_time = new DateTime('now', new DateTimeZone($timezone));
+        $date = $date_time->format('Y-m-d');
+        $local_time = $date_time->format('H:i:s');
 
-        $presence->user_id = Auth::user()->id;
-        $presence->status = $req->status;
-        $presence->ip_address = request()->getClientIp(true);
-        $presence->save();
+        $presence = Presence::where([
+            ['user_id', '=', Auth::id()],
+            ['created_at', '!=', 'null']
+        ])->first();
+
+        if (!$presence) {
+            $presence = new Presence();
+
+            $presence->user_id = Auth::user()->id;
+            $presence->status = $req->status;
+            $presence->ip_address = request()->getClientIp(true);
+            $presence->check_in = $local_time;
+
+            $presence->save();
+        } else
+            dd('Presensi sudah ada');
 
         return Redirect::route('home');
     }
