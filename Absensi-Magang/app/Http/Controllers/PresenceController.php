@@ -44,9 +44,9 @@ class PresenceController extends Controller
     {
         $title = "presences";
 
-        $presence = Presence::all();
-        $user = User::all();
+        $presence = User::join('presences', 'users.id', '=', 'presences.user_id')
+            ->get(['presences.*', 'users.name']);
 
-        return view('admin.presences', compact('title', 'presence', 'user'));
+        return view('admin.presences', compact('title', 'presence'));
     }
 }
