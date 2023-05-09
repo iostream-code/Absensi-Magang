@@ -57,15 +57,3 @@ Route::post('/insert', [UserController::class, 'insert']);
 Route::get('admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/update/{id}', [UserController::class, 'update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
-<<<<<<< HEAD
-
-Route::get('login', [loginController::class, 'login']);
-Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin');
-Route::get('register', [loginController::class, 'register']);
-Route::post('/register->user', [loginController::class, 'create'])->name('create_user');
-
-Route::get('admin', function() {return view('admin'); })->middleware('checkRole:admin');
-Route::get('students', function() {return view('home'); })->middleware('checkRole:students');
-
-=======
->>>>>>> aryak_dev
