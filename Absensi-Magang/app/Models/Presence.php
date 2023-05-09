@@ -9,6 +9,8 @@ class Presence extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id'];
+
     public function Users()
     {
         return $this->belongsTo(User::class);

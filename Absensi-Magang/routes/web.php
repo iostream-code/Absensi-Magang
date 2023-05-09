@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\loginController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PresenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,41 +17,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//user
+// Authentication User Route
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'actionLogin'])->name('action_login');
 
-Route::get('/home', function () {
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'createUser'])->name('create_user');
+
+// Presences Route
+
+Route::get('/presence', [PresenceController::class, 'presence'])->name('presence');
+Route::post('/presence', [PresenceController::class, 'addPresence'])->name('add_presence');
+
+
+// User Route
+
+Route::get('/user', function() {
     return view('user.home', [
         "title" => "home"
     ]);
-});
+})->name('home');
 
-Route::get('/rekap', function () {
-    return view('user.rekap', [
-        "title" => "rekap"
-    ]);
-});
+Route::get('/user/recap', [PresenceController::class, 'recapPresence'])->name('recap_presence');
 
-Route::get('/settings', function () {
-    return view('user.settings', [
-        "title" => "settings"
-    ]);
-});
-
-Route::get('/presence', function () {
-    return view('user.presence');
-});
-
-//admin
-
+// Admin Route
+        
 Route::get('/admin', function () {
     return view('admin.admin', [
         "title" => "admin"
     ]);
-});
+})->name('admin');
+
+Route::get('/admin/presences', [PresenceController::class, 'showPresences'])->name('show_presences');
 
 Route::get('admin/user', [UserController::class, 'index']);
 Route::get('admin/user/create', [UserController::class, 'create']);
@@ -57,6 +57,7 @@ Route::post('/insert', [UserController::class, 'insert']);
 Route::get('admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/update/{id}', [UserController::class, 'update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
+<<<<<<< HEAD
 
 Route::get('login', [loginController::class, 'login']);
 Route::post('postlogin', [loginController::class, 'postlogin'])->name('postlogin');
@@ -66,3 +67,5 @@ Route::post('/register->user', [loginController::class, 'create'])->name('create
 Route::get('admin', function() {return view('admin'); })->middleware('checkRole:admin');
 Route::get('students', function() {return view('home'); })->middleware('checkRole:students');
 
+=======
+>>>>>>> aryak_dev
