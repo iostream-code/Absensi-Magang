@@ -41,8 +41,18 @@ class PresenceController extends Controller
             $presence->check_in = $local_time;
 
             $presence->save();
-        } else
-            dd('Presensi sudah ada');
+        } else {
+            if ($presence->check_out == '') {
+                $last_presence = $presence;
+
+                $last_presence->update([
+                    $last_presence->check_out = $local_time
+                ]);
+
+                return Redirect::route('login');
+            } else
+                return Redirect::route('login');
+        }
 
         return Redirect::route('home');
     }

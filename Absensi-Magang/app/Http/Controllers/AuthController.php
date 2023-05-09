@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Models\User;
+use App\Models\Presence;
 
 class AuthController extends Controller
 {
@@ -48,5 +49,15 @@ class AuthController extends Controller
         $user->save();
 
         return Redirect::route('login');
+    }
+
+    public function logOut(Presence $presence)
+    {
+        if ($presence->check_out != '') {
+            Auth::logout();
+
+            return Redirect::route('login');
+        } else
+            return Redirect::route('add_presence');
     }
 }

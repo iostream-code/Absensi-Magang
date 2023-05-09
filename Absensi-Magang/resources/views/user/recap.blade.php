@@ -19,7 +19,8 @@
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>Tanggal</th>
-                                                <th>Jam</th>
+                                                <th>Masuk</th>
+                                                <th>Keluar</th>
                                                 <th>Status</th>
                                                 <th>IP Address</th>
                                             </tr>
@@ -29,7 +30,8 @@
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $presence->created_at->format('d M Y') }}</td>
-                                                    <td>{{ $presence->created_at->format('H:i') }}</td>
+                                                    <td>{{ $presence->check_in ?? '-'}}</td>
+                                                    <td>{{ $presence->check_out ?? '-' }}</td>
                                                     <td>{{ $presence->status }}</td>
                                                     <td>{{ $presence->ip_address }}</td>
                                                 </tr>

@@ -21,6 +21,7 @@ use App\Http\Controllers\PresenceController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'actionLogin'])->name('action_login');
+Route::get('/logout', [AuthController::class, 'logOut'])->name('logOut');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'createUser'])->name('create_user');

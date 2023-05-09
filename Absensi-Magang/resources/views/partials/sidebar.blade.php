@@ -69,7 +69,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="/" class='sidebar-link'>
+                <a href="{{ route('logOut') }}" class='sidebar-link'>
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
