@@ -20,16 +20,16 @@ class PresenceController extends Controller
         return view('user.presence', compact('user'));
     }
 
-    public function addPresence(Request $req)
+    public function checkPresence(Request $req)
     {
         $timezone = 'Asia/Jakarta';
         $date_time = new DateTime('now', new DateTimeZone($timezone));
         $date = $date_time->format('Y-m-d');
-        $local_time = $date_time->format('H:i:s');
+        $time = $date_time->format('H:i:s');
 
         $presence = Presence::where([
             ['user_id', '=', Auth::id()],
-            ['created_at', '!=', 'null']
+            ['date', '!=', $date]
         ])->first();
 
         if (!$presence) {
@@ -38,23 +38,20 @@ class PresenceController extends Controller
             $presence->user_id = Auth::user()->id;
             $presence->status = $req->status;
             $presence->ip_address = request()->getClientIp(true);
-            $presence->check_in = $local_time;
+            $presence->check_in = $time;
+            $presence->date = $date;
 
             $presence->save();
-        } else {
-            if ($presence->check_out == '') {
-                $last_presence = $presence;
 
-                $last_presence->update([
-                    $last_presence->check_out = $local_time
-                ]);
+            return Redirect::route('home');
+        } elseif ($presence->check_out == '') {
+            $presence->update([
+                $presence->check_out = $time
+            ]);
 
-                return Redirect::route('login');
-            } else
-                return Redirect::route('login');
-        }
-
-        return Redirect::route('home');
+            return Redirect::route('login');
+        } else
+            return Redirect::route('home');
     }
 
     public function recapPresence()
@@ -65,6 +62,26 @@ class PresenceController extends Controller
         $presence = Presence::where('user_id', $user->id)->get();
 
         return view('user.recap', compact('title', 'user', 'presence'));
+    }
+
+    public function lastPresence()
+    {
+        $timezone = 'Asia/Jakarta';
+        $date_time = new DateTime('now', new DateTimeZone($timezone));
+        $time = $date_time->format('H:i:s');
+
+        $presence = Presence::where([
+            ['user_id', '=', Auth::id()],
+            ['date', '!=', 'null']
+        ])->first();
+
+        $last_presence = $presence;
+
+        $last_presence->update([
+            $last_presence->check_out = $time
+        ]);
+
+        return Redirect::route('login');
     }
 
     public function showPresences()

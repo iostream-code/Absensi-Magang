@@ -29,7 +29,7 @@ Route::post('/register', [AuthController::class, 'createUser'])->name('create_us
 // Presences Route
 
 Route::get('/presence', [PresenceController::class, 'presence'])->name('presence');
-Route::post('/presence', [PresenceController::class, 'addPresence'])->name('add_presence');
+Route::post('/presence/check', [PresenceController::class, 'checkPresence'])->name('check_presence');
 
 
 // User Route

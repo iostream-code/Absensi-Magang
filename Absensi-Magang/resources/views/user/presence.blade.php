@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="button-presence d-flex align-items-center gap-2">
-                    <form action="{{ route('add_presence') }}" method="post">
+                    <form action="{{ route('check_presence') }}" method="post">
                         @csrf
                         <select name="status" class="form-select" aria-label="Default select example">
                             <option selected>Status</option>

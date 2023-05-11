@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ip_address', 255)->required();
             $table->time('check_in')->nullable();
             $table->time('check_out')->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

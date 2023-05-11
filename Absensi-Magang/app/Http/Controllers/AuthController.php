@@ -51,13 +51,10 @@ class AuthController extends Controller
         return Redirect::route('login');
     }
 
-    public function logOut(Presence $presence)
+    public function logOut()
     {
-        if ($presence->check_out != '') {
-            Auth::logout();
+        Auth::logout();
 
-            return Redirect::route('login');
-        } else
-            return Redirect::route('add_presence');
+        return Redirect::route('login');
     }
 }
