@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use \Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Redirect;
+use DateTimeZone;
+
+use App\Models\User;
+use App\Models\Presence;
+use DateTime;
 
 class AuthController extends Controller
 {
@@ -15,38 +19,58 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function register()
+    public function actionLogin(Request $req)
     {
-        return view('register');
-    }
+        $timezone = 'Asia/Jakarta';
+        $date_time = new DateTime('now', new DateTimeZone($timezone));
+        $date = $date_time->format('Y-m-d');
 
-    public function create(Request $request)
-    {
-        $user = new User();
-        
-        $user->name = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->role = $request->role;
-        $user->save();
-
-        return redirect('login');
-    }
-
-    public function postlogin(Request $req)
-    {
-        $input = [
-            'email' => $req->input('email'),
-            'password' => $req->input('password')
+        $data = [
+            'email' => $req->email,
+            'password' => $req->password,
         ];
 
-        if (Auth::attempt($input)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect('admin');
-            }
-            return redirect('presence');
-        }
+        $presence = Presence::where('user_id', '=', Auth::id())->first();
 
-        return redirect('/');
+        // $presence = Presence::where([
+        //     'user_id', '=', Auth::id(),
+        //     'date', '=', $date
+        // ])->first();
+
+        if (Auth::attempt($data)) {
+            if (Auth::user()->role == 'student') {
+                if ($presence->check_out != '')
+                    return Redirect::route('home');
+                else
+                    return Redirect::route('presence');
+            } else
+                return Redirect::route('admin');
+        } else
+            return Redirect::route('login');
+    }
+
+    public function createUser(Request $req)
+    {
+        $user = new User();
+
+        $user->name = $req->username;
+        $user->email = $req->email;
+        $user->password = Hash::make($req->password);
+        $user->role = $req->role;
+        $user->save();
+
+        return Redirect::route('login');
+    }
+
+    public function logOut()
+    {
+        $presence = Presence::where('user_id', '=', Auth::id())->first();
+
+        if ($presence->check_out != '') {
+            Auth::logout();
+
+            return Redirect::route('login');
+        } else
+            return Redirect::route('presence');
     }
 }

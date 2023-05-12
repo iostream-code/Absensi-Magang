@@ -39,20 +39,11 @@
                 </a>
             </li>
 
-            <li
-                class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item {{ ($title === "presences" ? 'active' : '') }}">
+                <a href="{{ route('show_presences') }}" class='sidebar-link'>
                     <i class="fa-solid fa-book"></i>
-                    <span>Riwayat</span>
+                    <span>Presences</span>
                 </a>
-                <ul class="submenu ">
-                    <li class="submenu-item">
-                        <a href="/tambah-jadwal-plp">WFH</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="/jadwal-berlangsung-plp">WFO</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="sidebar-item {{ ($title === "settings" ? 'active' : '') }}">

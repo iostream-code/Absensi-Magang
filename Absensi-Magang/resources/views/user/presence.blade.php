@@ -18,7 +18,7 @@
                 <img src="assets/images/presence.jpg" alt="" style="width: 200px; height: 200px;">
                 <div class="text d-flex align-items-center gap-5">
                     <div class="left">
-                        <h4>{{ Auth::user()->name }}</h4>
+                        <h4>{{ $user->name }}</h4>
                         <p>Tempat Magang</p>
                     </div>
                     <div class="right">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="button-presence d-flex align-items-center gap-2">
-                    <form action="/getpresence" method="POST">
+                    <form action="{{ route('check_presence') }}" method="post">
                         @csrf
                         <select name="status" class="form-select" aria-label="Default select example">
                             <option selected>Status</option>

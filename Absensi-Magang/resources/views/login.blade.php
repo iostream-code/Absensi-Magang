@@ -30,12 +30,11 @@
                         <img src="assets/images/logo/logo.svg" alt="Logo">
                     </div>
                     <h1 class="auth-title">Log in.</h1>
-
-                    <form action="postlogin" method="POST">
-                        {{ csrf_field() }}
+                    <form action="{{ route('action_login') }}" method="post">
+                        @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" name="email" class="form-control form-control-xl"
-                                placeholder="email">
+                                placeholder="Email">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
@@ -47,13 +46,14 @@
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-lg shadow-lg mt-2">Login</button>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-2" type="submit">Login</button>
                     </form>
-                    <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a href="{{ url('/register') }}"
+                    <div class="text-start mt-5 text-lg fs-4">
+                        <p class="text-gray-600">Don't have an account? <a href="{{ route('register') }}"
                                 class="font-bold">Sign
                                 up</a>.</p>
-                        <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
+                        {{-- <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p> --}}
+
                     </div>
                 </div>
             </div>
