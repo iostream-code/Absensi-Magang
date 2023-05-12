@@ -21,6 +21,7 @@
                                             <th>Tanggal</th>
                                             <th>Jam</th>
                                             <th>Status</th>
+                                            <th>Foto</th>
                                             <th>IP Address</th>
                                         </tr>
                                     </thead>
@@ -31,6 +32,8 @@
                                             <td>{{ $item->created_at->format('d M Y') }}</td>
                                             <td>{{ $item->created_at->format('H:i') }}</td>
                                             <td>{{ $item->status }}</td>
+                                            <td><img src="{{ asset($item->photo) }}" style="widows: 200px; height:200px"/>
+                                            </td>
                                             <td>{{ $item->ip_address }}</td>
                                         </tr>    
                                         @endforeach

@@ -41,7 +41,6 @@ Route::get('/presence', function () {
 });
 
 //admin
-
 Route::get('/admin', function () {
     return view('admin.admin', [
         "title" => "admin"

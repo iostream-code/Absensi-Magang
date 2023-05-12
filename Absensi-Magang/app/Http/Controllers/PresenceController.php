@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Str;
 
 class PresenceController extends Controller
 {
@@ -33,6 +36,23 @@ class PresenceController extends Controller
         $presence->user_id = Auth::user()->id;
         $presence->status = $req->status;
         $presence->ip_address = request()->getClientIp(true);
+        
+
+        $photo = $req->photo;
+        if($photo) {
+            list($type, $data) = explode(';', $photo);
+            list(, $data)      = explode(',', $data);
+            $data = base64_decode($data);
+
+            $type = explode(';', $photo)[0];
+            $type = explode('/', $type)[1];
+
+            $filename = Str::random(10).'_'.time().'.'.$type;
+            $path = public_path().'/img/'.$filename;
+            $presence->photo = 'img/'.$filename;
+            file_put_contents($path, $data);
+        }
+
         $presence->save();
 
         return redirect('home');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             // $table->foreignIdFor(User::class);
             $table->enum('status', ['WFH', 'WFO'])->required();
+            $table->string('photo');
             $table->string('ip_address', 255)->required();
             $table->timestamps();
         });

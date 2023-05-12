@@ -14,37 +14,65 @@
 
     <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="card">
-            <div class="card-header d-flex justify-content-around">
-                <img src="assets/images/presence.jpg" alt="" style="width: 200px; height: 200px;">
-                <div class="text d-flex align-items-center gap-5">
-                    <div class="left">
-                        <h4>{{ Auth::user()->name }}</h4>
-                        <p>Tempat Magang</p>
+            <form action="/getpresence" method="POST" content-type="multipart/form-data">
+                @csrf
+                <div class="card-header d-flex justify-content-around">
+                    {{-- <img src="assets/images/presence.jpg" alt="" style="width: 200px; height: 200px;"> --}}
+                    <div class="video d-flex align-items-center gap-2">
+                        <video id="video" width="300" height="300" autoplay name=""></video>
+                        <input type="text" name="photo" id="photo-input" hidden></input>
+                        <button type="btn" class="btn btn-primary btn-sm" onclick="takePhoto()">Ambil gambar</button>
+                        <img id="photo-preview" width="320" height="240">
                     </div>
-                    <div class="right">
-                        <p>Tanggal</p>
-                        <p>Durasi</p>
+                    
+                    <div class="text d-flex align-items-center gap-5">
+                        <div class="left">
+                            <h4>{{ Auth::user()->name }}</h4>
+                            <p>Tempat Magang</p>
+                        </div>
+                        <div class="right">
+                            <p>Tanggal</p>
+                            <p>Durasi</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="button-presence d-flex align-items-center gap-2">
-                    <form action="/getpresence" method="POST">
-                        @csrf
-                        <select name="status" class="form-select" aria-label="Default select example">
-                            <option selected>Status</option>
-                            <option value="WFH">WFH</option>
-                            <option value="WFO">WFO</option>
-                        </select>
-
-                        <button class="btn btn-success btn-lg " type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-            <div class="card-content">
-
-            </div>
-        </div>
+                    <div class="button-presence d-flex align-items-center gap-3">
+                            <select name="status" class="form-select" aria-label="Default select example" name="status">
+                                <option selected>Status</option>
+                                <option value="WFH">WFH</option>
+                                <option value="WFO">WFO</option>
+                            </select>
+                            <button class="btn btn-success btn-lg" type="submit">Submit</button>
+                    </div>
+            </form>  
+        </div>    
     </div>
+    
+
+    <script>
+        var video = document.querySelector("#video");
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.log("Something went wrong: " + error);
+                });
+        }
+
+        function takePhoto() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            var photo = canvas.toDataURL("image/png");
+            document.querySelector("#photo-preview").src = photo;
+            document.querySelector("#photo-input").value = photo;
+        }
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
