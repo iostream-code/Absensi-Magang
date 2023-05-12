@@ -27,7 +27,7 @@
             <div class="col-12 col-lg-7 col-md-9 center">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo"></a>
+                        <img src="assets/images/logo/logo.svg" alt="Logo">
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <form action="{{ route('action_login') }}" method="post">
@@ -53,6 +53,7 @@
                                 class="font-bold">Sign
                                 up</a>.</p>
                         {{-- <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p> --}}
+
                     </div>
                 </div>
             </div>

@@ -32,7 +32,6 @@
                                 {{ session()->get('error') }}
                             </div>
                         @endif
-
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input name="username" type="text" class="form-control form-control-xl"
                                 placeholder="Name">

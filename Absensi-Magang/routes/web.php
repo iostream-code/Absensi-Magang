@@ -31,7 +31,6 @@ Route::post('/register', [AuthController::class, 'createUser'])->name('create_us
 Route::get('/presence', [PresenceController::class, 'presence'])->name('presence');
 Route::post('/presence/check', [PresenceController::class, 'checkPresence'])->name('check_presence');
 
-
 // User Route
 
 Route::get('/user', function() {

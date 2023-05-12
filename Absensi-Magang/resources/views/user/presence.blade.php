@@ -36,7 +36,7 @@
                             <option value="WFO">WFO</option>
                         </select>
 
-                        <button class="btn btn-success btn-lg " type="submit">Submit</button>
+                        <button class="btn btn-success btn-lg" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
