@@ -32,14 +32,9 @@ class AuthController extends Controller
 
         $presence = Presence::where('user_id', '=', Auth::id())->first();
 
-        // $presence = Presence::where([
-        //     'user_id', '=', Auth::id(),
-        //     'date', '=', $date
-        // ])->first();
-
         if (Auth::attempt($data)) {
             if (Auth::user()->role == 'student') {
-                if ($presence->check_out != '')
+                if ($presence->check_out ?? '')
                     return Redirect::route('home');
                 else
                     return Redirect::route('presence');
@@ -47,6 +42,11 @@ class AuthController extends Controller
                 return Redirect::route('admin');
         } else
             return Redirect::route('login');
+    }
+
+    public function register()
+    {
+        return view('register');
     }
 
     public function createUser(Request $req)
