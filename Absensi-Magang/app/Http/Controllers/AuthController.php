@@ -34,10 +34,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($data)) {
             if (Auth::user()->role == 'student') {
-                if ($presence->check_out ?? '')
-                    return Redirect::route('home');
-                else
+                if ($presence->date ?? $date)
                     return Redirect::route('presence');
+                else
+                    return Redirect::route('home');
             } else
                 return Redirect::route('admin');
         } else
@@ -64,7 +64,14 @@ class AuthController extends Controller
 
     public function logOut()
     {
-        $presence = Presence::where('user_id', '=', Auth::id())->first();
+        $timezone = 'Asia/Jakarta';
+        $date_time = new DateTime('now', new DateTimeZone($timezone));
+        $date = $date_time->format('Y-m-d');
+
+        $presence = Presence::where([
+            ['user_id', '=', Auth::id()],
+            ['date', '=', $date]
+        ])->first();
 
         if ($presence->check_out != '') {
             Auth::logout();
