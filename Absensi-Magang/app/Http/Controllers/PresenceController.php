@@ -29,7 +29,8 @@ class PresenceController extends Controller
 
         $presence = Presence::where([
             ['user_id', '=', Auth::id()],
-            ['created_at', '!=', 'null']
+            ['created_at', '!=', 'null'], 
+            ['date', '=', $date]
         ])->first();
 
         if (!$presence) {
