@@ -49,6 +49,11 @@ class AuthController extends Controller
             return Redirect::route('login');
     }
 
+    public function register()
+    {
+        return view('register');
+    }
+
     public function createUser(Request $req)
     {
         $user = new User();
