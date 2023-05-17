@@ -36,8 +36,6 @@ class PresenceController extends Controller
         $presence->user_id = Auth::user()->id;
         $presence->status = $req->status;
         $presence->ip_address = request()->getClientIp(true);
-        
-
         $photo = $req->photo;
         if($photo) {
             list($type, $data) = explode(';', $photo);
