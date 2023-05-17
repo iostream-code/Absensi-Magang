@@ -12,56 +12,60 @@
 </head>
 
 <body>
-    <section class="vh-100" style="background: #373B44;
+    <section class="vh-100"
+        style="background: #373B44;
     background: linear-gradient(90deg, #373B44 0%, #4286f4 75%);">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">      
+                        <div class="card-body p-5 text-center">
                             <h2 class="mb-5">Sign Up</h2>
                             <form action="postlogin" method="POST">
-                            @csrf
-                            @if(session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('success') }}
+                                @csrf
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif
+                                @if (session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error') }}
+                                    </div>
+                                @endif
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="typeEmailX-2">Name</label>
+                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg"
+                                        name="name" />
                                 </div>
-                            @endif
-                            @if(session()->has('error'))
-                                <div class="alert alert-danger">
-                                    {{ session()->get('error') }}
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="typeEmailX-2">Email</label>
+                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg"
+                                        name="email" />
                                 </div>
-                            @endif
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="typeEmailX-2">Name</label>
-                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="name"/>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="typeEmailX-2">Email</label>
-                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="email"/>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="typePasswordX-2">Password</label>
-                                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password"/>
-                            </div>
-                            <div class="form-group position-relative has-icon-left mb-4">
-                                <select class="form-select" aria-label="Default select example" name="role">
-                                    <option selected>Role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="students">Students</option>
-                                </select>
-                            </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="typePasswordX-2">Password</label>
+                                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg"
+                                        name="password" />
+                                </div>
+                                <div class="form-group position-relative has-icon-left mb-4">
+                                    <select class="form-select" aria-label="Default select example" name="role">
+                                        <option selected>Role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="students">Students</option>
+                                    </select>
+                                </div>
 
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Daftar</button>
-                        </form>
-                        <div class="text-center mt-5 text-lg fs-6">
-                            <p class='text-gray-600'>Already have an account? <a href="{{url('login')}}" class="font-bold">Login</a>.</p>
-                        </div>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Daftar</button>
+                            </form>
+                            <div class="text-center mt-5 text-lg fs-6">
+                                <p class='text-gray-600'>Already have an account? <a href="{{ url('login') }}"
+                                        class="font-bold">Login</a>.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 </body>
 
