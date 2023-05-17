@@ -9,7 +9,7 @@ class Presence extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'photo'];
 
     public function Users()
     {

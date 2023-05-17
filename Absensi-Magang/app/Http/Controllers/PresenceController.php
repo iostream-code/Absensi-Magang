@@ -42,7 +42,22 @@ class PresenceController extends Controller
             $presence->check_in = $time;
             $presence->date = $date;
 
-            $presence->save();
+            $photo = $req->photo;
+        if($photo) {
+            list($type, $data) = explode(';', $photo);
+            list(, $data)      = explode(',', $data);
+            $data = base64_decode($data);
+
+            $type = explode(';', $photo)[0];
+            $type = explode('/', $type)[1];
+
+            $filename = Str::random(10).'_'.time().'.'.$type;
+            $path = public_path().'/img/'.$filename;
+            $presence->photo = 'img/'.$filename;
+            file_put_contents($path, $data);
+        }
+
+        $presence->save();
 
             return Redirect::route('home');
         } elseif ($presence->check_out == '') {

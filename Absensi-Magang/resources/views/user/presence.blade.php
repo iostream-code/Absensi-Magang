@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,41 +9,79 @@
     <title>Absensi</title>
 </head>
 
-<body>
-
+<body style="background: #373B44; background: linear-gradient(90deg, #373B44 0%, #4286f4 75%);">
     <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="card">
-            <div class="card-header d-flex justify-content-around">
-                <img src="assets/images/presence.jpg" alt="" style="width: 200px; height: 200px;">
-                <div class="text d-flex align-items-center gap-5">
-                    <div class="left">
-                        <h4>{{ $user->name }}</h4>
-                        <p>Tempat Magang</p>
-                    </div>
-                    <div class="right">
-                        <p>Tanggal</p>
-                        <p>Durasi</p>
+            <form action="/getpresence" method="POST" content-type="multipart/form-data">
+                @csrf
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="video d-flex flex-column align-items-center gap-3">
+                            <video id="video" width="320" height="240" autoplay></video>
+                            <input type="text" name="photo" id="photo-input" hidden></input>
+                            <img id="photo-preview" width="320" height="240">
+                            <button type="button" id="takePhoto" class="btn btn-primary"><i class="fa-solid fa-camera"></i> Take Photo</button>
+                        </div>
+                        <div class="text d-flex justify-content-between mt-4">
+                            <div class="text-left">
+                                <h4>{{ Auth::user()->name }}</h4>
+                                <p style="font-size: 15px">{{ Auth::user()->email }}</p>
+                            </div>
+                            <div class="text-right">
+                                <p>{{ now()->format('d-m-Y') }}</p>
+                            </div>
+                        </div>
+                        <div class="button-presence d-flex flex-column gap-2">
+                                <select name="status" class="form-select" aria-label="Default select example" name="status">
+                                    <option selected>Status</option>
+                                    <option value="WFH">WFH</option>
+                                    <option value="WFO">WFO</option>
+                                </select>
+                                <button class="btn btn-success btn-lg" type="submit">Submit</button>
+                        </div>
                     </div>
                 </div>
-
-                <div class="button-presence d-flex align-items-center gap-2">
-                    <form action="{{ route('check_presence') }}" method="post">
-                        @csrf
-                        <select name="status" class="form-select" aria-label="Default select example">
-                            <option selected>Status</option>
-                            <option value="WFH">WFH</option>
-                            <option value="WFO">WFO</option>
-                        </select>
-
-                        <button class="btn btn-success btn-lg" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-            <div class="card-content">
-
-            </div>
-        </div>
+            </form>  
+        </div>    
     </div>
+    
+
+    <script>
+        document.getElementById("takePhoto").addEventListener("click", function(event){
+            event.preventDefault();
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            var photo = canvas.toDataURL("image/png");
+            console.log(photo);
+            document.querySelector("#photo-preview").src = photo;
+            document.querySelector("#photo-input").value = photo;
+        });
+
+        var video = document.querySelector("#video");
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.log("Something went wrong: " + error);
+                });
+        }
+
+        function takePhoto() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            var photo = canvas.toDataURL("image/png");
+            document.querySelector("#photo-preview").src = photo;
+            document.querySelector("#photo-input").value = photo;
+        }
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

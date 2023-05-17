@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['WFH', 'WFO'])->required();
+            $table->string('photo');
             $table->string('ip_address', 255)->required();
             $table->time('check_in')->nullable();
             $table->time('check_out')->nullable();
