@@ -32,7 +32,7 @@
                         <div class="card-body p-5 text-center">
 
                             <h3 class="mb-5">Sign in</h3>
-                            <form action="postlogin" method="POST">
+                            <form action="{{ route('action_login') }}" method="POST">
                                 @csrf
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="typeEmailX-2">Email</label>
