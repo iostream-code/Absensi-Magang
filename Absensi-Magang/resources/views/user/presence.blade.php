@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
 <body style="background: #373B44; background: linear-gradient(90deg, #373B44 0%, #4286f4 75%);">
     <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="card">
-            <form action="/getpresence" method="POST" content-type="multipart/form-data">
+            <form action="{{ route('check_presence') }}" method="POST" content-type="multipart/form-data">
                 @csrf
                 <div class="card-content">
                     <div class="card-body">
@@ -20,7 +21,8 @@
                             <video id="video" width="320" height="240" autoplay></video>
                             <input type="text" name="photo" id="photo-input" hidden></input>
                             <img id="photo-preview" width="320" height="240">
-                            <button type="button" id="takePhoto" class="btn btn-primary"><i class="fa-solid fa-camera"></i> Take Photo</button>
+                            <button type="button" id="takePhoto" class="btn btn-primary"><i
+                                    class="fa-solid fa-camera"></i> Take Photo</button>
                         </div>
                         <div class="text d-flex justify-content-between mt-4">
                             <div class="text-left">
@@ -32,22 +34,23 @@
                             </div>
                         </div>
                         <div class="button-presence d-flex flex-column gap-2">
-                                <select name="status" class="form-select" aria-label="Default select example" name="status">
-                                    <option selected>Status</option>
-                                    <option value="WFH">WFH</option>
-                                    <option value="WFO">WFO</option>
-                                </select>
-                                <button class="btn btn-success btn-lg" type="submit">Submit</button>
+                            <select name="status" class="form-select" aria-label="Default select example"
+                                name="status">
+                                <option selected>Status</option>
+                                <option value="WFH">WFH</option>
+                                <option value="WFO">WFO</option>
+                            </select>
+                            <button class="btn btn-success btn-lg" type="submit">Submit</button>
                         </div>
                     </div>
                 </div>
-            </form>  
-        </div>    
+            </form>
+        </div>
     </div>
-    
+
 
     <script>
-        document.getElementById("takePhoto").addEventListener("click", function(event){
+        document.getElementById("takePhoto").addEventListener("click", function(event) {
             event.preventDefault();
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
@@ -64,11 +67,13 @@
         var context = canvas.getContext("2d");
 
         if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function (stream) {
+            navigator.mediaDevices.getUserMedia({
+                    video: true
+                })
+                .then(function(stream) {
                     video.srcObject = stream;
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     console.log("Something went wrong: " + error);
                 });
         }

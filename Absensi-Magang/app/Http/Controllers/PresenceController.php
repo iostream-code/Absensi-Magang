@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use DateTimeZone;
 
 use App\Models\User;
@@ -78,26 +79,6 @@ class PresenceController extends Controller
         $presence = Presence::where('user_id', $user->id)->get();
 
         return view('user.recap', compact('title', 'user', 'presence'));
-    }
-
-    public function lastPresence()
-    {
-        $timezone = 'Asia/Jakarta';
-        $date_time = new DateTime('now', new DateTimeZone($timezone));
-        $time = $date_time->format('H:i:s');
-
-        $presence = Presence::where([
-            ['user_id', '=', Auth::id()],
-            ['date', '!=', 'null']
-        ])->first();
-
-        $last_presence = $presence;
-
-        $last_presence->update([
-            $last_presence->check_out = $time
-        ]);
-
-        return Redirect::route('login');
     }
 
     public function showPresences()
